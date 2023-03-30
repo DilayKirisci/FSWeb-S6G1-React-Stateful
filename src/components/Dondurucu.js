@@ -4,7 +4,7 @@ Döndürücü Talimatlar
 Şu kısa videoyu izleyin:
 https://www.ergineer.com/assets/materials/a664dfe7-dondurucu.gif
 
-Bu Dondurucu'yü oluşturmak için kaç adet state dilimine ihtiyacınız var? Başlamadan önce biraz üzerine düşünün!
+Bu Dondurucu'yü oluşturmak için kaç adet state dilimine ihtiyacınız var? Başlamadan önce biraz üzerine düşünün!npm 
 
 İlk düşüncemize göre 2 state olması lazım:
   - döndürücü görünür olduğunda veya değilken (bu belki boolean olabilir).
@@ -35,24 +35,32 @@ ADIM 4:
   "not" için kullandığımız operatörü hatırlıyor musunuz??
 */
 
-import React from 'react'; /* STEP 0 */
+import React from "react";
+import { useState } from "react";
+
+
 
 export default function Dondurucu() {
-/* ADIM 1 */
+	/* ADIM 1 */
+	const [transform, setTransform] = useState(false);
+	
 
-  const toggleDondurucu = () => {
-  /* ADIM 4 */
-  };
+	const toggleDondurucu = () => {
+		setTransform(!transform);
+	};
 
-  return (
-    <div className='widget-spinner container'>
-      <h2>Döndürücü</h2>
-      {
-        true && <div id='döndürücü' className='spinner'>--+--</div> /* ADIM 2 */
-      }
-      <button id='toggleDondurucu' onClick={toggleDondurucu}>
-         Gizle {/* STEP 3 */}
-      </button>
-    </div>
-  );
+	return (
+		<div className="widget-spinner container">
+			<h2>Döndürücü</h2>
+			{transform && (
+				<div id="döndürücü" className="spinner">
+					--+--
+				</div>
+			)}
+
+			<button id="toggleDondurucu" onClick={toggleDondurucu}>
+				{transform ? "Gizle" : "Goster"}
+			</button>
+		</div>
+	);
 }
